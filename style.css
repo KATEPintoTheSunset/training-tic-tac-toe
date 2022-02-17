@@ -1,0 +1,73 @@
+.main {
+    float: left;
+}
+
+h1 {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px;
+}
+
+#game {
+    margin: auto;
+    border-collapse: collapse;
+}
+
+#cell_0, #cell_3 {
+    border-bottom: 4px solid black;
+    border-right: 4px solid black;
+}
+
+#cell_1, #cell_4 {
+    border-bottom: 4px solid black;
+}
+
+#cell_2, #cell_5 {
+    border-bottom: 4px solid black;
+    border-left: 4px solid black;
+}
+
+#cell_7{
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+}
+
+.result{
+    border-left: 4px solid #601B15;
+    float: left;
+    margin-left: 50px;
+    height: 700px;
+}
+
+div {
+    color: #601B15;
+    font-size: 100px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 50px;
+}
+
+#moves {
+    border: 2px solid black;
+    border-collapse: collapse;
+    margin-left: 50px;
+    background: white;
+    font-size: 20px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#moves td {
+    border: 2px solid black;
+}
+
+#moves td:hover {
+    background: grey;
+}
+
+.btn-group button {
+    font-size: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #601B15;
+    position: relative;
+}

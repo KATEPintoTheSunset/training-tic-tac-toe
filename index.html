@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Tic-Tac-Toe</title>
+    <script src="js\x-o.js"></script>
+    <script>
+        function move(index) {
+            for (let i = 1; i < NumMove; i++) {
+                const e = document.getElementById(i);
+                if (e.style.background === "rgb(221, 217, 217)") {
+                    previous(i)
+                }
+            }
+            const element = document.getElementById("input");
+            if (element.innerHTML === ""){
+                if ( arrayTable[index] != 2) {
+                    alert("Choose another place")
+                }else{
+                    const xo = turnXorO(index);
+                    const move = create(index);
+
+                    let table = document.getElementById('moves');
+                    const addTr= document.createElement("tr");
+                    addTr.setAttribute( "id", `c${NumMove}`);
+                    const addTd= document.createElement("td");
+                    addTd.setAttribute( "id", `${NumMove}`);
+                    addTd.setAttribute( "onclick", `choice(${NumMove})`);
+                    addTd.innerHTML = move;
+                    table.appendChild(addTr);
+                    addTr.appendChild(addTd);
+
+                    const cell = document.getElementById(`cell_${index}`);
+                    const addImg = document.createElement("img")
+                    addImg.setAttribute( "id", `img${index}`);
+                    addImg.setAttribute( "src", `${xo}`);
+                    addImg.setAttribute( "width", "160");
+                    addImg.setAttribute( "height", "160");
+                    cell.appendChild(addImg);
+                }
+                const win = whoWin()
+                if (win != undefined) {
+                    element.innerHTML = win;
+                }
+            }
+        }
+
+        function choice(x) {
+            for (let y = 1; y < NumMove + 1; y++) {
+                const e = document.getElementById(y);
+                e.style.background = "white";
+                const hideImg = document.getElementById(`img${arrayMove[y][1]}`);
+                hideImg.width = 160
+                hideImg.height = 160
+            }
+            for (let y = NumMove; y > x; y--) {
+                const hideImg = document.getElementById(`img${arrayMove[y][1]}`);
+                hideImg.width = 0
+                hideImg.height = 0
+            }
+            paintToBlack(x);
+            return x;
+        }
+
+        function paintToBlack(index){
+            const e = document.getElementById(index);
+            e.style.background = "rgb(221, 217, 217)";
+        }
+
+        function previous(x) {
+            for (x; NumMove > x;) {
+                const undoCell = document.getElementById(`c${NumMove}`);
+                const undoImg = document.getElementById(`img${arrayMove[NumMove][1]}`);
+                arrayTable[arrayMove[NumMove][1]] = 2
+                arrayMove.pop();
+                NumMove--
+                undoCell.remove();
+                undoImg.remove();
+                document.getElementById("input").innerHTML = "";
+            }
+            const e = document.getElementById(x);
+                e.style.background = "white";
+            console.log('delete')
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <h1>Here you can play in Tic-Tac-Toe</h1>
+        <table id="game">
+            <tr>
+                <td  width="180" height="180" onclick="move(0)" id="cell_0"></td>
+                <td width="180" height="180" onclick="move(1)" id="cell_1"></td>
+                <td width="180" height="180" onclick="move(2)" id="cell_2"></td>
+            </tr>
+            <tr><td width="180" height="180" onclick="move(3)" id="cell_3"></td>
+                <td width="180" height="180" onclick="move(4)" id="cell_4"></td>
+                <td width="180" height="180" onclick="move(5)" id="cell_5"></td>
+            </tr>
+            <tr><td width="180" height="180" onclick="move(6)" id="cell_6"></td>
+                <td width="180" height="180" onclick="move(7)" id="cell_7"></td>
+                <td width="180" height="180" onclick="move(8)" id="cell_8"></td>
+            </tr>
+        </table>
+    </div>
+    <div class = "result">
+        <div id="input"></div>
+        <table id="moves">
+        </table>
+        <div class="btn-group">
+        <button href="#" onclick="location.reload(); return false;">Clear</button>
+        </div>
+    </div>
+</body>
